@@ -47,7 +47,7 @@ npm run dev
 ## Part 1
 1. I have chosen use  pandas library to load csv file as it provides the easier way of manipulating data, analysing and cleaning( removing duplicates with missing values and merging column data ) and iterated through rows to commit them to database using bulk_create method.
 
-2. We can schedule django command for reconciling and commiting data to database using tools like celery / crons to trigger or everytime when there is new data.
+2. We can schedule django command for reconciling and commiting data to database using tools like celery / crons to trigger  when there is new data.
 
 
 ## Part 2 
