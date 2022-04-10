@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import MusicalWork
 
-# Register your models here.
+
+class MuscialWorkAdmin(admin.ModelAdmin):
+    list_display = ['title', 'contributors', 'iswc']
+
+admin.site.register(MusicalWork,MuscialWorkAdmin)
