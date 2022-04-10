@@ -1,3 +1,7 @@
 from django.test import TestCase
 
-# Create your tests here.
+class MusicalCompositionTest(TestCase):
+
+    def test_musical_compostion_listing(self):
+        self.assertEqual(11,11)
+        
