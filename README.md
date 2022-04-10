@@ -1,4 +1,4 @@
-# musical-work instructions
+# musical works instructions
 
 ## Getting Started
 
