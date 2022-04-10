@@ -1,3 +1,4 @@
+
 """
 Django settings for musicwork project.
 
@@ -37,12 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Third party apps
-    'simple_history',
-    'rest_framework',
-    'corsheaders',
-    # Local apps
-    'app',
 ]
 
 MIDDLEWARE = [
@@ -53,7 +48,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'musicwork.urls'
@@ -82,13 +76,8 @@ WSGI_APPLICATION = 'musicwork.wsgi.application'
 
 DATABASES = {
     'default': {
-        'CONN_MAX_AGE': 0,
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': 'localhost',
-        'NAME': 'musicdb',
-        'USER': 'musicuser',
-        'PASSWORD': 'musicp@55',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
