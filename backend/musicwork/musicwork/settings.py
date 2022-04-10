@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'simple_history',
     'rest_framework',
     'corsheaders',
+    'django_filters',
     # Local apps
     'app',
 ]
@@ -126,7 +127,8 @@ USE_TZ = True
 # Added pagination in case the records reach 20
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 100
+    'PAGE_SIZE': 100,
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
 
 # Static files (CSS, JavaScript, Images)
@@ -140,6 +142,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-WEBSITE = "www.musiclab.com "
+WEBSITE = "www.musicalworks.com "
 
-ADMIN_SITE_HEADER = "Music Lab"
+ADMIN_SITE_HEADER = "Music Works"
