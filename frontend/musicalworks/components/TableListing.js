@@ -13,7 +13,7 @@ export default function TableListing() {
     if (error) return <div className='contianer mx-auto w-4/5 text-rose-600 px-10 py-20 text-bold'>failed to load, please make sure that your django localhost:8000 server is running </div>
     return (
         <div className='mt-5 contianer mx-auto w-4/5 '>
-            <table className="table-auto w-full  border-collapse rounded-md border border-slate-100 shadow">
+            <table className=" w-full  border-collapse rounded-md border border-slate-100 shadow">
                 <thead className='bg-slate-50'>
                     <tr>
                         <th className=' text-left'>Title</th>
