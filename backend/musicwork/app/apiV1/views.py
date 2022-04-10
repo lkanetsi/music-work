@@ -11,7 +11,13 @@ class LargeResultsSetPagination(PageNumberPagination):
     max_page_size = 10000
 
 class MusicCompositionApiView(generics.ListAPIView):
-    '''Endpoint for listing musical works by ISWC'''
+    '''Endpoint for for fetching musical works by ISWC'''
+    queryset = MusicalWork.objects.all()
+    serializer_class = MusicalWorkSerializer
+    lookup_field = 'iswc'
+    
+class MusicCompositionListingApiView(generics.ListAPIView):
+    '''Endpoint for listing musical works and includes pagiantion to reduce response time'''
     queryset = MusicalWork.objects.all()
     serializer_class = MusicalWorkSerializer
     lookup_field = 'iswc'
