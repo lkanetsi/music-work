@@ -18,28 +18,32 @@ class Command(BaseCommand):
 
         file_path = options["file_path"]
         data = pd.read_csv(file_path)
-        # cleaning data 
+        # cleaning data
         data = data.dropna(axis=0)
 
         # removing duplicates
-        data.drop_duplicates(subset=None, keep='first', inplace=False)
-        # lets index with row 
-        data.reset_index()
-        print(data)        
+        data = data.drop_duplicates(subset=['iswc'], keep='first', inplace=False)
+
+        # merge and consolidate duplicated data 
+        data = data.groupby(['title','contributors'])['iswc'].apply(', '.join).reset_index()
+
+        print(data.describe)
+
         # intialize list
         musicalwork = []
 
-        for index,row in data.iterrows():
+        for index, row in data.iterrows():
             musicalworks = MusicalWork(
                 title=row[0],
                 contributors=row[1],
                 iswc=row[2],
             )
             musicalwork.append(musicalworks)
+
         # commint and save to the database
         if musicalwork:
             MusicalWork.objects.bulk_create(musicalwork)
-        # for performance
+    
         end_time = timezone.now()
 
         self.stdout.write(
