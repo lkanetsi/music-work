@@ -24,11 +24,11 @@ export default function TableListing() {
                 </thead>
                 <tbody>
                     {data.results.map((music, index) =>
-                        <tr key={index} className='text-sm py-2'>
-                            <td>{music.title}</td>
-                            <td>{music.contributors}</td>
-                            <td>{music.iswc}</td>
-                            <td>
+                        <tr key={index} className='text-sm py-2 border'>
+                            <td className='text-sm p-2'>{music.title}</td>
+                            <td className='text-sm py-2 '>{music.contributors}</td>
+                            <td className='text-sm py-2'>{music.iswc}</td>
+                            <td className='text-sm py-2'>
                                 <button className='text-xs px-2 bg-indigo-700 text-white rounded-full font-medium'>view more</button>
                             </td>
                         </tr>
