@@ -2,17 +2,12 @@ import axios from 'axios'
 import useSWR from 'swr'
 import Head from 'next/head'
 import Link from 'next/link'
+import TableListing from '../components/TableListing'
 
 const fetcher = url => axios.get(url).then(res => res.data)
 
 export default function Home() {
-  const { data, error } = useSWR('http://localhost:8000/apiv1/', fetcher)
-  if (!data && !error) {
-    return (
-      <div>Please wait for a moment...</div>
-    )
-  }
-  if (error) return <div>failed to load</div>
+
   return (
     <div className='antialiased'>
       <Head>
@@ -40,7 +35,7 @@ export default function Home() {
           </div>
         </nav>
       </header>
-      <div className='px-10 h-96 mt-12 bg-gradient-to-br from-pink-600 to-indigo-600 via-rose-600 flex flex-col items-center justify-center'>
+      <div className='px-10 h-72 mt-12 bg-gradient-to-br from-pink-600 to-indigo-600 via-rose-600 flex flex-col items-center justify-center'>
         <div className='flex items-center justify-between'>
           <div>
             <h1 className='text-white text-5xl font-semibold'>Indulge yourself in good music.</h1>
@@ -50,6 +45,10 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* MAIN CONTENT */}
+      <TableListing/>
+      {/* END CONTENT */}
     </div>
   )
 }
