@@ -3,7 +3,8 @@ from app.models import MusicalWork
 from .serializers import MusicalWorkSerializer
 
 
-class MusicCompositionApiView(generics.ListCreateAPIView):
-    '''Endpoint for listing musical composition metadata'''
+class MusicCompositionApiView(generics.ListAPIView):
+    '''Endpoint for listing musical works by ISWC'''
     queryset = MusicalWork.objects.all()
     serializer_class = MusicalWorkSerializer
+    lookup_field = 'iswc'
