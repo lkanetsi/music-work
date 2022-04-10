@@ -1,2 +1,2 @@
-# music-work
+# musical-work
 Task (Assessment)
