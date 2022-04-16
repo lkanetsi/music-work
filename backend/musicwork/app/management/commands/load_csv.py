@@ -14,13 +14,13 @@ class Command(BaseCommand):
 
     def convertor(self, contributors):
         """converts series data from pandas dataframe
-        to the list for contributors colums"""
+        to the list for contributors column"""
         # type cast series to a list
         contributors = contributors.tolist()
         #remove duplicates using set
         contributors = set(contributors)
         # concant string
-        contributors = '|'.join(contributors)
+        contributors = ' | '.join(contributors)
         return contributors
 
     def handle(self, *args, **options):
