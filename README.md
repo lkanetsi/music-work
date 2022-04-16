@@ -7,7 +7,7 @@ First create vitruial env, setup django server and install dependencies:
 ```bash
 cd backend/
 
-python3 -m venv musicEnv
+python3 -m venv musicEnv && source musicEnv/bin/activate
 
 cd musicwork
 
