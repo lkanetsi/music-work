@@ -25,7 +25,7 @@ class Command(BaseCommand):
         data = data.drop_duplicates(subset=['iswc'], keep='first', inplace=False)
 
         # merge and consolidate duplicated data 
-        data = data.groupby(['title','contributors'])['iswc'].apply('| '.join).reset_index()
+        data = data.groupby(['title','iswc'])['contributors'].apply('| '.join).reset_index()
 
         print(data.describe)
 
