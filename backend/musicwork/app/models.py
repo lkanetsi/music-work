@@ -8,12 +8,13 @@ class MusicalWork(models.Model):
 
     title = models.CharField(max_length=255)
     contributors = models.TextField(max_length=255)
-    iswc = models.CharField(max_length=255)
+    iswc = models.CharField(max_length=255,unique=True)
+    # for tracking changes 
     history = HistoricalRecords()
     created_at = models.DateTimeField(auto_now_add=True,)
 
     class Meta:
-        ordering = ('title',)
+        ordering = ('-created_at',)
 
     def __str__(self):
         return self.title
