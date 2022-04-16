@@ -51,8 +51,8 @@ class Command(BaseCommand):
             musicalwork.append(musicalworks)
 
         # commint and save to the database
-        # if musicalwork:
-        #     MusicalWork.objects.bulk_create(musicalwork)
+        if musicalwork:
+            MusicalWork.objects.bulk_create(musicalwork)
 
         end_time = timezone.now()
 
