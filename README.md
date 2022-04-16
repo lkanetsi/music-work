@@ -23,7 +23,7 @@ Second setup a postgres database with following credentials:
 Third run django command to populate database with csv data:  
 ```bash
 
-./manage.py load_csv works_metadata
+./manage.py load_csv works_metadata.csv
 
 ./manage.py runserver
 
