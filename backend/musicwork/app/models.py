@@ -7,8 +7,8 @@ class MusicalWork(models.Model):
     """ musical compostion metadata records"""
 
     title = models.CharField(max_length=255)
-    contributors = models.CharField(max_length=255)
-    iswc = models.CharField(max_length=30)
+    contributors = models.TextField(max_length=255)
+    iswc = models.CharField(max_length=255)
     history = HistoricalRecords()
     created_at = models.DateTimeField(auto_now_add=True,)
 

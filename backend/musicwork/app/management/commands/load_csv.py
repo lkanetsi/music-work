@@ -1,4 +1,6 @@
 
+from heapq import merge
+from turtle import left
 import pandas as pd
 from django.core.management import BaseCommand
 from django.utils import timezone
@@ -18,6 +20,7 @@ class Command(BaseCommand):
 
         file_path = options["file_path"]
         data = pd.read_csv(file_path)
+
         # cleaning data
         data = data.dropna(axis=0)
 
@@ -25,7 +28,7 @@ class Command(BaseCommand):
         data = data.drop_duplicates(subset=['iswc'], keep='first', inplace=False)
 
         # merge and consolidate duplicated data 
-        data = data.groupby(['title','iswc'])['contributors'].apply('| '.join).reset_index()
+        data = data.groupby(['title','contributors'])['iswc'].apply('| '.join).reset_index()
 
         print(data.describe)
 
@@ -41,8 +44,8 @@ class Command(BaseCommand):
             musicalwork.append(musicalworks)
 
         # commint and save to the database
-        if musicalwork:
-            MusicalWork.objects.bulk_create(musicalwork)
+        # if musicalwork:
+        #     MusicalWork.objects.bulk_create(musicalwork)
     
         end_time = timezone.now()
 
