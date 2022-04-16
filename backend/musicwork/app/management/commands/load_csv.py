@@ -1,6 +1,4 @@
 
-from heapq import merge
-from turtle import left
 import pandas as pd
 from django.core.management import BaseCommand
 from django.utils import timezone
@@ -9,30 +7,38 @@ from app.models import MusicalWork
 
 
 class Command(BaseCommand):
-    help = "Loads musicalworks sheet from CSV file; cleans duplicates and missing fields."
+    help = "Loads musicalworks sheet from CSV file; cleans duplicates , missing data and combines data ."
 
     def add_arguments(self, parser):
         parser.add_argument("file_path", type=str)
 
+    def convertor(self, contributors):
+        """converts series data from pandas dataframe
+        to the list for contributors colums"""
+        # type cast series to a list
+        contributors = contributors.tolist()
+        #remove duplicates using set
+        contributors = set(contributors)
+        # concant string
+        contributors = '|'.join(contributors)
+        return contributors
+
     def handle(self, *args, **options):
         # start time for benchmarking and performance
         start_time = timezone.now()
-
         file_path = options["file_path"]
+        #import CSV file 
         data = pd.read_csv(file_path)
 
-        # cleaning data
+        # cleaning data / dropping missing row  data NAN
         data = data.dropna(axis=0)
-
-        # removing duplicates
-        data = data.drop_duplicates(subset=['iswc'], keep='first', inplace=False)
-
-        # merge and consolidate duplicated data 
-        data = data.groupby(['title','contributors'])['iswc'].apply('| '.join).reset_index()
-
+    
+        # merge and consolidate duplicated data
+        data = data.groupby('title').agg({
+            'contributors':[self.convertor],
+            'iswc': 'first'}).reset_index()
         print(data.describe)
-
-        # intialize list
+        # intialize list to commit to the database
         musicalwork = []
 
         for index, row in data.iterrows():
@@ -44,9 +50,9 @@ class Command(BaseCommand):
             musicalwork.append(musicalworks)
 
         # commint and save to the database
-        # if musicalwork:
-        #     MusicalWork.objects.bulk_create(musicalwork)
-    
+        if musicalwork:
+            MusicalWork.objects.bulk_create(musicalwork)
+
         end_time = timezone.now()
 
         self.stdout.write(
