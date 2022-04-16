@@ -38,7 +38,7 @@ export default function Home() {
       <div className='px-10 h-72 mt-12 bg-gradient-to-br from-pink-600 to-indigo-600 via-rose-600 flex flex-col items-center justify-center'>
         <div className='flex items-center justify-between'>
           <div>
-            <h1 className='text-white text-5xl font-semibold'>Indulge yourself in good music.</h1>
+            <h1 className='text-white text-5xl font-bold capitalize tracking-tight'>Indulge yourself in good music.</h1>
           </div>
           <div>
             {/* <img src='music.jpg' className=' object-cover w-1/2 rounded-2xl shadow-xl ' /> */}
